@@ -1,0 +1,102 @@
+{% extends 'mainapp/base.html' %} {% load static %} {% block body %}
+{% if user.is_authenticated %}
+<div class="container" id="index">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="nav-link" href="{% url 'dashboard' %}">
+        <div class="card">
+          <div class="card-body">
+            <h4>
+              <span class="tick"><i class="fa fa-check"></i></span> PATIENT CASSENOTES MANAGEMENT
+            </h4>
+            <a href="#" class="btn-infor">Launch</a>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-6">
+      <div class="card card-deactivate">
+        <div class="card-body">
+          <h4>RECORDS INVENTORY TOOL</h4>
+          <a href="#" class="btn-infor">Not Active</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button
+        class="navbar-toggle"
+        data-toggle="collapse"
+        data-target=".navbar-collapse">
+        <span class="icon icon-bar"></span>
+        <span class="icon icon-bar"></span>
+        <span class="icon icon-bar"></span>
+      </button>
+      <!-- lOGO TEXT HERE -->
+    </div>
+
+    <!-- MENU LINKS -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-nav-first">
+        <li>
+          <a href="#home" class="smoothScroll">Record storage & retrieval</a>
+        </li>
+        <li><a href="#">Medical records storgae and Retrieval system</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#"><i class="fa fa-facebook-square"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-instagram"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section id="home" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="home-info">
+          <h1>STORE AND RETRIEVE</h1>
+          <h3>
+            Store hundreds of thousands of patient casenotes, <br />
+            with a swift retrieval portal at any point
+          </h3>
+          <a
+            href="{% url 'login'%}"
+            class="btn-infor"
+            style="box-shadow: 0 4px 8px 0 #4e4c4c"
+            >Start</a
+          >
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12">
+        <img
+          class="landing-img"
+          src="{% static 'emprecord/img/4565.jpg' %}"
+          style="
+            width: 100%;
+            height: 50%;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 #4e4c4c;
+          "
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endif %} {% endblock %}

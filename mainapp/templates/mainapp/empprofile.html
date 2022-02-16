@@ -1,0 +1,22 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block body %}
+    <div class="container">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Profile</th>
+            <th scope="col">Name</th>
+            <th scope="col">Files</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img class="rounded-circle account-img" src="{{empdetails.empImages.ur}}" alt="image" style="width: 5rem;"></td>
+            <td>{{empdetails.RecordOwner}}</td>
+            <td><a href="{{ empdetails.empDocs.url }}"target="_self">Document</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

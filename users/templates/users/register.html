@@ -1,0 +1,26 @@
+{% extends 'mainapp/base.html' %} {% load static %} {% block body %}
+<!-- static {css stylesheet for Users Authentication} -->
+<link rel="stylesheet" href="{%static 'users/css/users.css' %}" />
+
+<!-- CONTAINER STARTS HERE -->
+<div class="container">
+  <!-- REGISTER USER FORM -->
+  <div class="content-section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Join Today</legend>
+        {{ form }}
+      </fieldset>
+      <div>
+        <div class="form-group">
+          <button class="btn-infor" type="submit">Sign Up</button>
+          <button class="btn btn-danger" type="cancel">
+            <a href="{%url 'home' %}">Cancel</a>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

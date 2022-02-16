@@ -1,0 +1,49 @@
+{% extends 'mainapp/base.html' %}
+{% load humanize %}
+{% block body %}
+{% load static %}
+
+<div class="container">
+  {% if employees %}
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">View</th>
+        <th scope="col">
+          <a href="{%url 'addemployee' %}">Add Employee</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employee in employees %}
+      <tr>
+        <td>{{employee.empID}}</td>
+        <td>{{employee.empName}}</td>
+        <td>{{employee.Entrydate| naturalday}}</td>
+        <td>
+          <a class="nav-link" href=" {%url 'empprofile' employee.id %}">view</a>
+        </td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <a class="nav-link" class="btn btn-primary" href="{% url 'dashboard' %}">Go back to Dashboard</a>
+
+      <section class="search">
+        <img class="search-img" src="{% static 'emprecord/img/no-results.png' %}" alt="">
+        <h1>Sorry, we couldn't find any related search results</h1>
+        <p class="mute-text">Search again with Employee Name, directory or employee Number</p>
+
+        <form id="searchform" action="{% url 'search' %}" method="get">
+          <input type="text" name="q" type="text" value="{{ request.GET.q }}" placeholder="Type Name or Employee ID"class="search-input" />
+          <button type="button" onclick="searchform.submit()" class="search-btn"><i class="fa fa-search"></i></button>
+        </form>
+      </section>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

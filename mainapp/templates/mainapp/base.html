@@ -1,0 +1,79 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <!-- title -->
+     <title>Record storage & retrieval </title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <!-- PAGE FAVICON -->
+     <link rel="shortcut icon" type="image/png" href="/media/images/icon/favicon.png">
+     <!-- Custom CSS for Groupj pages & Bootstrap CSS -->
+     <link rel="stylesheet" href="{% static 'mainapp/css/emprecord-style.css' %}">
+     <link rel="stylesheet" href="{% static 'mainapp/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'mainapp/css/magnific-popup.css' %}">
+     <link rel="stylesheet" href="{% static 'mainapp/css/font-awesome.min.css' %}">
+
+</head>
+
+<body>
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+               <span class="spinner-rotate"></span>
+          </div>
+     </section>
+
+     {% if user.is_authenticated %}
+     <!-- NAVIGATION -->
+     <div class="container-fluid navigation">
+          <div class="navbar-header">
+               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="fa fa-cube"></i>
+               </button>
+               <!-- lOGO TEXT HERE -->
+               <a href="" class="navbar-brand">Records storage & retrieval</a>
+          </div>
+
+          <!-- MENU LINKS -->
+          <div class="collapse navbar-collapse">
+               <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="{%url 'home' %}"><i class="fa fa-home">Home</i></a></li>
+                    <li><a href="#">Retention Schedule</a></li>
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{%url 'home' %}"><i class="fa fa-bars"></i></a></li>
+                    <li><a href="{% url 'profp' %}">
+                         <img class="rounded-circle account-img" style="width:20px; border-radius: 50px;" src="{{user.profile.image.url}}">
+                    </a></li>
+                    <li class="btn-infor"><a href="{%url 'logout'%}"><i class="fa fa-key"> logout</i></a></li>
+               </ul>
+          </div>
+
+     </div>
+     {%else%}
+     {% endif %}
+     {% block body %}
+     <!-- content goes here -->
+
+     {% endblock %}
+
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="{% static 'mainapp/js/jquery.js' %}"></script>
+     <script src="{% static 'mainapp/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'mainapp/js/jquery.stellar.min.js' %}"></script>
+     <script src="{% static 'mainapp/js/jquery.magnific-popup.min.js' %}"></script>
+     <script src="{% static 'mainapp/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'mainapp/js/custom.js' %}"></script>
+
+
+</body>
+</html>

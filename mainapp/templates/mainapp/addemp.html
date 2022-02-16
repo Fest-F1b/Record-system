@@ -1,0 +1,168 @@
+{% extends 'mainapp/base.html' %} {% load static %} {% block body %}
+{% if user.is_authenticated %}
+<!--
+       ADD EMPLOYEE PAGE 
+      Page has form for adding patient by entry.
+      Page also allows import of employees from an excel template.
+   -->
+<div class="container-fluid addemployee">
+  <div class="navbar-header">
+    <button
+      class="navbar-toggle"
+      data-toggle="collapse"
+      data-target=".navbar-collapse"
+    >
+      <i class="fa fa-cube"></i>
+    </button>
+
+    <!-- lOGO TEXT HERE -->
+    <a href="{% url 'dashboard' %}" class="navbar-brand"><i class="fa fa-dashboard"> Dashboard</i></a>
+    <h1><a href="{% url 'dept_test' %}" class="navbar-brand"> testing</i></a></h1>
+
+  </div>
+
+  <!-- MENU LINKS -->
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">OPD/ MEDICAL RECORDS UNIT</a></li>
+      <li><a href="#" class="import">IMPORT</a></li>
+      <li class="addempbutton">
+        <a href="#" data-toggle="modal" data-target="#modal-form"
+          ><i class="fa fa-plus"></i>Add Patient</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  <div class="left">
+    <h1>Import Patient Files/ Documents</h1>
+    <h3>Create folders for patients to store casenotes</h3>
+  </div>
+  <section data-stellar-background-ratio="0.5">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card addemployee-card">
+          <div class="card-body">
+            <h4><span class="tick">1</span>Download Excel template</h4>
+            <p>Use our free template of excel</p>
+            <a
+              href="/media/media/documents/employee template.xlsx"
+              class="btn-infor"
+              ><i class="fa fa-download"></i>Download</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card addemployee-card">
+          <div class="card-body">
+            <h4><span class="tick">2</span>Populate Excel template</h4>
+            <p>
+              Populate the template with employees and there details then click
+              upload to save employees.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card addemployee-card">
+          <div class="card-body">
+            <h4><span class="tick">3</span>Upload Excel template</h4>
+            <p>Click !, upload to save employees</p>
+            <a href="{%url 'Import_csv' %}" class="btn-infor"
+              ><i class="fa fa-upload"></i>Upload</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="modal fade"
+    id="modal-form"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content modal-popup">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <div class="modal-title">
+                  <h2>Capture Employee data & files</h2>
+                </div>
+
+                <!-- NAV TABS -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="active">
+                    <a
+                      href="#sign_up"
+                      aria-controls="sign_up"
+                      role="tab"
+                      data-toggle="tab"
+                      >Add Employee</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#sign_in"
+                      aria-controls="sign_in"
+                      role="tab"
+                      data-toggle="tab"
+                      >Attach files/ Documents</a
+                    >
+                  </li>
+                </ul>
+
+                <!-- TAB PANES -->
+                <div class="tab-content">
+                  <div
+                    role="tabpanel"
+                    class="tab-pane fade in active"
+                    id="sign_up"
+                  >
+                    <form action="#" method="post">
+                      {% csrf_token %} {{ EnterEmployee_form}} <br />
+                      <div class="bottom-top pt-3">
+                        <input type="submit" value="submit" />
+                      </div>
+                    </form>
+                  </div>
+
+                  <div role="tabpanel" class="tab-pane fade in" id="sign_in">
+                    <form action="" method="post">
+                      {% csrf_token %} {{ recordform}}
+                      <div class="bottom-top pt-3">
+                        <input type="submit" value="submit" />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% else %}
+<a class="nav-link" href="{% url 'login' %}">Sign Up</a>
+{% endif %} {% endblock %}

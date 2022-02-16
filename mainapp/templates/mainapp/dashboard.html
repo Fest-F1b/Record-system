@@ -1,0 +1,92 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+
+  {% if messages %}
+  {% for message in messages%}
+  <div class="alert alert-{{message.tags}}">
+    {{message}}
+  </div>
+  {% endfor %}
+  {% endif %}
+
+<h1>Click on Patient to view detailed files</h1>
+
+  <table class="table table-sm">
+    <thead>
+      <tr class="menu">
+        <th scope="col">
+          <form id="searchform" action="{% url 'search' %}" method="get">
+            <input type="text" name="q" type="text" value="{{ request.GET.q }}" placeholder="Patient name or ID number"
+              class="search-input" />
+            <button type="button" onclick="searchform.submit()" class="search-btn"><i class="fa fa-search"></i></button>
+          </form>
+        </th>
+        <th scope="col">
+
+          <button class="btn-infor " type="button">
+            <a href="{%url 'addemployee' %}"><i class="fa fa-plus"></i> Add Patient</a>
+          </button>
+
+        </th>
+      </tr>
+    </thead>
+  </table>
+{% if page_obj %}
+<div class="container dash">
+  
+<table class="table table-sm">
+  <thead>
+    <tr>
+      
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Created on</th>
+      <th scope="col">ward</th>
+      <th scope="col">view</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for pp in page_obj%}
+    <tr>
+      <td>{{pp.empID}}</td>
+      <td>{{pp.empName}}</td>
+      <td>{{pp.Entrydate}}</td>
+      <td>{{pp.directory}}</td>
+
+      <td>
+        <a class="nav-link" href="{%url 'empprofile' pp.id %}"><i class="fa fa-link"></i></a>
+      </td>
+    </tr>
+
+    {% endfor %}
+
+  </tbody>
+</table>
+</div>
+<div class="pagination">
+  <span class="step-links tick">
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current tick">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+{%else%}
+<p>No Patient data, click to add patient data or files</p>
+{% endif %}
+</div>
+
+
+{% endblock %}

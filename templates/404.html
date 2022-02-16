@@ -1,0 +1,14 @@
+{% block body %}
+{% load static %}
+
+<div class="container">
+<section class="search">
+          404
+<img class="search-img" src="{% static 'emprecord/img/no-results.png' %}" alt="">
+<h1>Sorry, we couldn't find any related search results</h1>
+<a class="nav-link" href="{% url 'index' %}">
+
+</section> 
+</div>
+
+{% endblock %}

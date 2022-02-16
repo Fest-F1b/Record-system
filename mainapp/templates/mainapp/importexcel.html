@@ -1,0 +1,57 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+{% block body %}
+<!--
+      -- ADD EMPLOYEE PAGE --
+      Page has form for adding patient by entry.
+      Page also allows import of employees from an excel template.
+   -->
+<div class="container-fluid addemployee">
+  <div class="navbar-header">
+    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <i class="fa fa-cube"></i>
+
+    </button>
+
+    <!-- lOGO TEXT HERE -->
+    <a href="{% url 'dashboard' %}" class="navbar-brand"><i class="fa fa-dashboard"> Dashboard</i></a>
+  </div>
+
+  <!-- MENU LINKS -->
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">DIRECTORY</a></li>
+      <li><a href="{%url 'Import_csv' %}" class="import">IMPORT</a></li>
+      <li class="addempbutton"><a href="{% url 'addemployee' %}" data-toggle="modal" data-target="#modal-form">Add Employee <i
+            class="fa fa-plus"></i></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Excel Data Upload</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="col-md-8 col-sm-12 col-xs-12 form-group"></div>
+            <input type="file" name="myfile" class="form-control">
+            <br>
+            <button type="submit" class="btn-infor">Upload</button>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

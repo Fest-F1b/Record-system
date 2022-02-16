@@ -1,0 +1,49 @@
+{% extends 'mainapp/base.html' %} {% load static %} {% block body %}
+<!-- static {css stylesheet for Users Authentication} -->
+<link rel="stylesheet" href="{%static 'users/css/users.css' %}" />
+
+<!-- CONTAINER STARTS HERE -->
+<div class="container auth">
+  {% if messages %}
+  <!--Messages for alerts when a user logins successfully-->
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}}">{{message}}</div>
+  {%endfor%} {% endif %}
+
+  <!-- LOGIN FORM  -->
+  <div class="content-section">
+    <form method="POST" action="#">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Records storage & retrieval</legend>
+        {{ form }}
+        <label for="remember">
+          <input type="checkbox" name="remember" id="remember" />Remember me
+        </label>
+      </fieldset>
+      <div class="below">
+        <div class="form-group">
+          <button class="btn-infor" type="submit">Login</button>
+        </div>
+      </div>
+      <div class="below">
+        <div class="border-top pt-3">
+          <small class="text-muted">
+            Is this Your First time Here ?
+            <a class="ml-2" href="{% url 'register'%}">Create Account</a>
+          </small>
+        </div>
+        <div class="border-top pt-3">
+          <small class="text-muted">
+            Forgot Password ?
+            <a class="ml-2" href="{%url 'password-reset' %}"
+              >Forgot Password ?</a
+            >
+          </small>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{%endblock%}

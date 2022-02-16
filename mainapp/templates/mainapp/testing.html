@@ -1,0 +1,39 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block body %}
+{% if user.is_authenticated %}
+<h1>HMIS OPD 001: OUT PATIENT MEDICAL FORM 5</h1>
+<div class="container">
+      <label for="date">Date:</label>
+      <input type="datetime" name="date" id="">
+
+      <label for="name">Name:</label>
+      <input type="text" name="name">
+
+      <label for="age">Age:</label>
+      <input type="number">
+
+      <label for="weight">Weight: (Kg)</label>
+      <input type="number">
+
+      <label for="height">Height: (cm)</label>
+      <input type="number">
+
+      <label for="sex">Sex:</label>
+      <input type="text">
+
+      <label for="MUANC">MUAC (cm):</label>
+      <input type="number">
+
+      <label for="BMI">BMIAge Z-Score:</label>
+      <input type="number">
+
+      <label for="BMI">BMI:</label>
+      <input type="number">
+
+      <label for="village">Village:</label>
+      <input type="text">
+</div>
+
+{% endif %}
+{% endblock %}
